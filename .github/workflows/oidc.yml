@@ -4,6 +4,8 @@ name: AWS OIDC Connect Demo
 on:
   push
 env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION : "us-east-1"   
 permissions:
       id-token: write   # This is required for requesting the JWT
@@ -18,8 +20,6 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           role-to-assume: arn:aws:iam::943438976692:role/github_OIDC
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
