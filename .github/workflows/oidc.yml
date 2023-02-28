@@ -4,7 +4,7 @@ name: AWS OIDC Connect Demo
 on:
   push
 env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_ACCESS_KEY_ID: ${{ AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION : "us-east-1"   
 permissions:
@@ -27,7 +27,7 @@ jobs:
       - name: Create env file
         run: |
           touch .env
-          echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env
+          echo AWS_ACCESS_KEY_ID=${{ AWS_ACCESS_KEY_ID }} >> .env
           cat .env
 
       - name: Print AWS SSM Parameter
