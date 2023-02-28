@@ -24,9 +24,11 @@ jobs:
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: 'Create env file'
+      - name: Create env file
         run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
+          touch .env
+          echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env
+          cat .env
 
       - name: Print AWS SSM Parameter
         run: aws ssm get-parameter --name=hello_aws-gh-oidc-mn --query Parameter.Value
