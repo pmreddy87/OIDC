@@ -4,8 +4,6 @@ name: AWS OIDC Connect Demo
 on:
   push
 env:
-  AWS_ACCESS_KEY_ID: ${{ AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION : "us-east-1"   
 permissions:
       id-token: write   # This is required for requesting the JWT
@@ -26,12 +24,6 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Create env file
-        run: |
-          touch .env
-          echo AWS_ACCESS_KEY_ID=${{ AWS_ACCESS_KEY_ID }} >> .env
-          cat .env
-
       - name: Print AWS SSM Parameter
         run: aws ssm get-parameter --name=hello_aws-gh-oidc-mn --query Parameter.Value
 
