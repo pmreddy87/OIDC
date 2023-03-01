@@ -33,7 +33,7 @@ jobs:
           
       - run: sudo mkdir -p /home/artifact
 
-      - run: echo hello > /home/artifact/world.txt
+      - run: echo ${{ env.AWS_REGION }} > /home/artifact/world.txt
 
       - uses: actions/upload-artifact@v3
         with:
