@@ -30,6 +30,25 @@ jobs:
           role-to-assume: arn:aws:iam::943438976692:role/github_OIDC
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
+          
+      - run: mkdir -p /home/artifact
+
+      - run: echo hello > /home/artifact/world.txt
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: /home/artifact/world.txt 
+          
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: /home/artifact/world.txt
+
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: /home/artifact/world.txt
+          
       - name: Print AWS SSM Parameter
         run: aws ssm get-parameter --name=hello_aws-gh-oidc-mn --query Parameter.Value
 
