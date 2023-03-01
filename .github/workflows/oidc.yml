@@ -11,7 +11,7 @@ permissions:
       id-token: write   # This is required for requesting the JWT
       contents: read    # This is required for actions/checkout
 jobs:
-  DemoOIDC:
+  AssumeRole:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone the repository
@@ -23,7 +23,9 @@ jobs:
           role-to-assume: arn:aws:iam::943438976692:role/github_OIDC
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
-
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
       - name: Create env file
         run: |
           touch .env
