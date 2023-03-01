@@ -43,11 +43,11 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: my-artifact
-          path: /home/artifact/world.txt
+          path: /home/artifact
 
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: /home/artifact/world.txt
+        working-directory: /home/artifact
           
       - name: Print AWS SSM Parameter
         run: aws ssm get-parameter --name=hello_aws-gh-oidc-mn --query Parameter.Value
