@@ -50,7 +50,7 @@ jobs:
         working-directory: /home/artifact
         
       - name: Display content of downloaded files
-        run: cat world.txt
+        run: cat /home/artifact/world.txt
           
       - name: Print AWS SSM Parameter
         run: aws ssm get-parameter --name=hello_aws-gh-oidc-mn --query Parameter.Value
