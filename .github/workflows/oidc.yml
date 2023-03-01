@@ -24,6 +24,12 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::943438976692:role/github_OIDC
+          role-session-name: samplerolesession
+          aws-region: ${{ env.AWS_REGION }}
       - name: Print AWS SSM Parameter
         run: aws ssm get-parameter --name=hello_aws-gh-oidc-mn --query Parameter.Value
 
