@@ -31,7 +31,7 @@ jobs:
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
           
-      - run: mkdir -p /home/artifact
+      - run: sudo mkdir -p /home/artifact
 
       - run: echo hello > /home/artifact/world.txt
 
