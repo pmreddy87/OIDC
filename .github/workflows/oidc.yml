@@ -23,7 +23,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Print AWS SSM Parameter
-        run: aws ssm get-parameter --name=github_ssm_parameter --query Parameter.Value
+        run: aws ssm get-parameter --name=github_oidc_parameter --query Parameter.Value
 
       - name: Print assumed role
         run: aws sts get-caller-identity
